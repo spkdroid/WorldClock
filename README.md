@@ -1,3 +1,3 @@
 # WorldClock
 
-A simple clock utility application for your Android phone
+A simple world clock utility application for your Android phone
