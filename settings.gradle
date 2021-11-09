@@ -8,5 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "WordlClock"
 include ':app'
-include ':core'
-include ':data'
+include ':domain'
+include ':model'
