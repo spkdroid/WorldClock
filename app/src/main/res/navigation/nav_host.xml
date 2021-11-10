@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/summaryFragment">
+
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.spkd.wordlclock.page.SummaryFragment"
+        android:label="summary_fragment"
+        tools:layout="@layout/summary_fragment" >
+        <action
+            android:id="@+id/action_summaryFragment_to_timeZoneFragment"
+            app:destination="@id/timeZoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/timeZoneFragment"
+        android:name="com.spkd.wordlclock.page.TimeZoneFragment"
+        android:label="time_zone_fragment"
+        tools:layout="@layout/time_zone_fragment" />
+</navigation>
