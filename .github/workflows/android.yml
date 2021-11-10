@@ -24,10 +24,3 @@ jobs:
       ## Actual task
       - name: Assemble with gradle — make sure everything builds
         run: ./gradlew assemble --no-daemon --stacktrace
-
-      # This should ideally be done as a Check job below, but it needs to be done as a separate
-      # step after running assemble. Heckin' ridikalus.
-      # Probably fixed in dokka 1.4.10, but we can't move to kotlin 1.4 yet.
-      #  https://github.com/square/workflow/issues/1152.
-      - name: Run dokka to validate kdoc
-        run: ./gradlew siteDokka --build-cache --no-daemon --stacktrace
