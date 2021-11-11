@@ -33,7 +33,7 @@ class TimeZoneAdapter(private val mContext: Context, private val mData: List<Str
             holder.zoneName.text = ""
             holder.zoneImage.setImageResource(R.drawable.antarctica)
         } else {
-            var name = cityName.split("/")
+            val name = cityName.split("/")
             holder.cityName.text = name[0]
             holder.zoneName.text = name[1]
             holder.zoneImage.setImageResource(R.drawable.america)
@@ -86,8 +86,8 @@ class TimeZoneAdapter(private val mContext: Context, private val mData: List<Str
 
     class RadioViewHolder(itemView: View) :
         androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        internal var cityName: TextView = itemView.findViewById(R.id.timeZoneTitle) as TextView
-        internal var zoneName: TextView = itemView.findViewById(R.id.timeZoneCityName) as TextView
+        internal var zoneName: TextView = itemView.findViewById(R.id.timeZoneTitle) as TextView
+        internal var cityName: TextView = itemView.findViewById(R.id.timeZoneCityName) as TextView
         internal var zoneImage: ImageView = itemView.findViewById(R.id.iconImage) as ImageView
     }
 }
