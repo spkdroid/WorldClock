@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import com.spkd.wordlclock.R
+import com.spkd.wordlclock.adapter.TimeZoneAdapter
 import com.spkd.wordlclock.viewmodel.TimeZoneViewModel
+import kotlinx.android.synthetic.main.time_zone_fragment.*
 
 class TimeZoneFragment : Fragment() {
 
@@ -29,12 +33,12 @@ class TimeZoneFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(TimeZoneViewModel::class.java)
-        viewModel.getCityList().observe(requireActivity(), Observer {
-            it.forEach { ram ->
-                Toast.makeText(requireContext(),ram,Toast.LENGTH_LONG).show()
-            }
+        viewModel.getCityList().observe(requireActivity(), {
+            timeZoneList.adapter = TimeZoneAdapter(requireContext(),it)
         })
-
+        timeZoneList.layoutManager = GridLayoutManager(context, 1)
+        timeZoneList.setHasFixedSize(true)
+        timeZoneList.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.HORIZONTAL))
     }
 
 }
