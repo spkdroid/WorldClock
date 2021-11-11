@@ -3,6 +3,7 @@ package com.spkd.wordlclock.adapter
 
 import android.content.Context
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import com.spkd.wordlclock.R
 
@@ -26,7 +27,26 @@ class TimeZoneAdapter(private val mContext: Context, private val mData: List<Str
 
     override fun onBindViewHolder(holder: RadioViewHolder, position: Int) {
         val cityName = mData[position]
-        holder.cityName.text = cityName
+
+        if (cityName.indexOf("/") == -1) {
+            holder.cityName.text = cityName
+            holder.zoneName.text = ""
+            holder.zoneImage.setImageResource(R.drawable.antarctica)
+        } else {
+            var name = cityName.split("/")
+            holder.cityName.text = name[0]
+            holder.zoneName.text = name[1]
+            holder.zoneImage.setImageResource(R.drawable.america)
+            when (holder.cityName.text) {
+                "America", "Canada" -> holder.zoneImage.setImageResource(R.drawable.america)
+                "Antarctica" -> holder.zoneImage.setImageResource(R.drawable.antarctica)
+                "Asia" -> holder.zoneImage.setImageResource(R.drawable.asia)
+                "Australia" -> holder.zoneImage.setImageResource(R.drawable.australia)
+                "Europe" -> holder.zoneImage.setImageResource(R.drawable.europe)
+                "Africa" -> holder.zoneImage.setImageResource(R.drawable.africa)
+                else -> holder.zoneImage.setImageResource(R.drawable.america)
+            }
+        }
     }
 
     interface ClickListener {
@@ -67,5 +87,7 @@ class TimeZoneAdapter(private val mContext: Context, private val mData: List<Str
     class RadioViewHolder(itemView: View) :
         androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         internal var cityName: TextView = itemView.findViewById(R.id.timeZoneTitle) as TextView
+        internal var zoneName: TextView = itemView.findViewById(R.id.timeZoneCityName) as TextView
+        internal var zoneImage: ImageView = itemView.findViewById(R.id.iconImage) as ImageView
     }
 }
