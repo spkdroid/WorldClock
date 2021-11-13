@@ -1,4 +1,4 @@
-package com.spkd.worldclock.core
+package com.spkd.wordlclock
 
 import android.app.Activity
 import android.app.Application
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Component(dependencies = [], modules = [AppModule::class, RoomModule::class])
 public interface AppComponent {
 
-    fun inject(app: Activity)
+    fun inject(app: MainActivity)
 
     fun timeZoneDao(): TimeZoneDao
 

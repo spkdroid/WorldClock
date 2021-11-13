@@ -30,7 +30,7 @@ public class RoomModule(application: Application) {
 
     @Singleton
     @Provides
-    fun radioRepository(timeZoneDao: TimeZoneDao): ITimeZoneRepository {
+    fun timeZoneRepository(timeZoneDao: TimeZoneDao): ITimeZoneRepository {
         return TimeZoneDataSource(timeZoneDao)
     }
 }

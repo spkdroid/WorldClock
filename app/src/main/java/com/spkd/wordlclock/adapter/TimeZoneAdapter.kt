@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.spkd.wordlclock.R
 
 
@@ -13,6 +14,8 @@ import com.spkd.wordlclock.R
  */
 class TimeZoneAdapter(private val mContext: Context, private val mData: List<String>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<TimeZoneAdapter.RadioViewHolder>() {
+
+
 
     override fun getItemCount(): Int {
         return mData.size
@@ -84,7 +87,7 @@ class TimeZoneAdapter(private val mContext: Context, private val mData: List<Str
         }
     }
 
-    class RadioViewHolder(itemView: View) :
+    inner class RadioViewHolder(itemView: View) :
         androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         internal var zoneName: TextView = itemView.findViewById(R.id.timeZoneTitle) as TextView
         internal var cityName: TextView = itemView.findViewById(R.id.timeZoneCityName) as TextView
