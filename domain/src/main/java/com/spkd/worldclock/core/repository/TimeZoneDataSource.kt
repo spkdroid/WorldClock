@@ -1,5 +1,6 @@
 package com.spkd.worldclock.core.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.spkd.worldclock.core.database.TimeZoneDao
 import com.spkd.worldclock.data.entity.TimeZone
@@ -14,7 +15,9 @@ class TimeZoneDataSource @Inject constructor(var timeZoneDao: TimeZoneDao) : ITi
     }
 
     override fun insert(timeZone: TimeZone): Completable {
-        return timeZoneDao.insert(timeZone)
+        return timeZoneDao.insert(timeZone).doOnError {
+            Log.e("Error","Primary Key Error")
+        }
     }
 
     override fun delete(timeZone: TimeZone): Completable {

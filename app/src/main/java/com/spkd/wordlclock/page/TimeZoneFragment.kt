@@ -6,16 +6,19 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.spkd.wordlclock.R
 import com.spkd.wordlclock.adapter.TimeZoneAdapter
+import com.spkd.wordlclock.adapter.TimeZoneAdapter.RecyclerTouchListener
 import com.spkd.wordlclock.viewmodel.TimeZoneViewModel
 import kotlinx.android.synthetic.main.time_zone_fragment.*
+import kotlinx.android.synthetic.main.time_zone_list.view.*
 
-class TimeZoneFragment : Fragment(), TextWatcher {
+class TimeZoneFragment : Fragment(), TextWatcher, TimeZoneAdapter.ClickListener {
 
     companion object {
         fun newInstance() = TimeZoneFragment()
@@ -46,6 +49,7 @@ class TimeZoneFragment : Fragment(), TextWatcher {
             )
         )
         timeZoneSearchInputText.addTextChangedListener(this)
+        timeZoneList.addOnItemTouchListener(RecyclerTouchListener(requireContext(), this))
     }
 
     override fun beforeTextChanged(textInput: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -61,7 +65,13 @@ class TimeZoneFragment : Fragment(), TextWatcher {
     }
 
     override fun afterTextChanged(textInput: Editable?) {
-        timeZoneList.adapter!!.notifyDataSetChanged()
+        timeZoneList.adapter!!.notifyItemChanged(1)
     }
 
+    override fun onClick(view: View, position: Int) {
+        val text = view.timeZoneTitle.text.toString() + "/" + view.timeZoneCityName.text.toString()
+        viewModel.addTimeZoneToDatabase(text).observe(this, {
+            System.out.println(it.size)
+        })
+    }
 }

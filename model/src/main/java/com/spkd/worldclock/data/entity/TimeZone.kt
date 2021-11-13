@@ -5,5 +5,5 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class TimeZone(@PrimaryKey val uid: Int,
+data class TimeZone(@PrimaryKey val uid: String,
                  @ColumnInfo(name = "timezone") val timeZoneName: String?)

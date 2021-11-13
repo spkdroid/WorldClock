@@ -2,16 +2,16 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "651c10f9ea6bdbe88242977eb8e66f15",
+    "identityHash": "75480daf76e67bad5f43b8ac7b773af1",
     "entities": [
       {
         "tableName": "TimeZone",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `timezone` TEXT, PRIMARY KEY(`uid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` TEXT NOT NULL, `timezone` TEXT, PRIMARY KEY(`uid`))",
         "fields": [
           {
             "fieldPath": "uid",
             "columnName": "uid",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -34,7 +34,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '651c10f9ea6bdbe88242977eb8e66f15')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '75480daf76e67bad5f43b8ac7b773af1')"
     ]
   }
 }
