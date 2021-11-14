@@ -11,7 +11,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-public class RoomModule(application: Application) {
+class RoomModule(application: Application) {
 
     var timeZoneDatabase =
         Room.databaseBuilder(application, TimeZoneDatabase::class.java, "timezone-db").build()
