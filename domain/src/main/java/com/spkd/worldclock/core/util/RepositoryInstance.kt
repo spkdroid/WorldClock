@@ -1,14 +1,13 @@
-package com.spkd.wordlclock.util
+package com.spkd.worldclock.core.util
 
 import com.spkd.worldclock.data.repository.ITimeZoneRepository
 
-
-object TimeZoneRepositoryInstance {
+object RepositoryInstance {
 
     private lateinit var instance:ITimeZoneRepository
 
-    fun setInstance(instance:ITimeZoneRepository) {
-        TimeZoneRepositoryInstance.instance = instance
+    fun setInstance(instance: ITimeZoneRepository) {
+        RepositoryInstance.instance = instance
     }
 
     fun getInstance():ITimeZoneRepository {

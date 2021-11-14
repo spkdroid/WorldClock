@@ -3,9 +3,9 @@ package com.spkd.wordlclock
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import com.spkd.wordlclock.util.TimeZoneRepositoryInstance
 import com.spkd.worldclock.core.di.AppModule
 import com.spkd.worldclock.core.di.RoomModule
+import com.spkd.worldclock.core.util.RepositoryInstance
 import com.spkd.worldclock.data.repository.ITimeZoneRepository
 import javax.inject.Inject
 
@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var timeZoneRepository: ITimeZoneRepository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         DaggerAppComponent.builder().appModule(AppModule(application))
             .roomModule(RoomModule(application)).build().inject(this)
 
-        TimeZoneRepositoryInstance.setInstance(timeZoneRepository)
+        RepositoryInstance.setInstance(timeZoneRepository)
+
     }
 }
