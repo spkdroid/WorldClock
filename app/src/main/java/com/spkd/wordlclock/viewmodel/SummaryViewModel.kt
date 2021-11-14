@@ -1,12 +1,10 @@
 package com.spkd.wordlclock.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spkd.wordlclock.util.TimeZoneRepositoryInstance
-import com.spkd.worldclock.core.usecase.CityUseCase
 import com.spkd.worldclock.data.entity.TimeZone
-import com.spkd.worldclock.data.usecase.ICityUseCase
+import io.reactivex.schedulers.Schedulers
 
 class SummaryViewModel : ViewModel() {
 
@@ -19,4 +17,10 @@ class SummaryViewModel : ViewModel() {
             selectedTimeZoneList.postValue(it)
         }
     }
+
+    fun removeTimeZoneFromDatabase(timeZone:String) {
+        val timeZoneRepository = TimeZoneRepositoryInstance.getInstance()
+        timeZoneRepository.delete(TimeZone(timeZone,timeZone)).subscribeOn(Schedulers.newThread()).subscribe()
+    }
+
 }
