@@ -34,8 +34,8 @@ class TimeZoneAdapter(private val mContext: Context, private val mData: List<Str
             holder.zoneImage.setImageResource(R.drawable.antarctica)
         } else {
             val name = cityName.split("/")
-            holder.cityName.text = name[0]
-            holder.zoneName.text = name[1]
+            holder.cityName.text = name[1]
+            holder.zoneName.text = name[0]
             holder.zoneImage.setImageResource(R.drawable.america)
             when (holder.cityName.text) {
                 "America", "Canada" -> holder.zoneImage.setImageResource(R.drawable.america)

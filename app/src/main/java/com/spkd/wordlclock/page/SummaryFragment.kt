@@ -54,22 +54,8 @@ class SummaryFragment : Fragment() {
         addTimeZoneButton.setOnClickListener {
               Navigation.findNavController(it).navigate(R.id.action_summaryFragment_to_timeZoneFragment)
         }
-
-
-        // update the recyclerview every 10 second
-        setHandler()
     }
 
-    private fun setHandler() {
-        val handler = Handler()
-        val delay = 10000L //1000 milliseconds = 1 sec
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                summaryTimeZoneList.adapter!!.notifyDataSetChanged()
-                handler.postDelayed(this, delay)
-            }
-        }, delay)
-    }
 
     override fun onResume() {
         super.onResume()
