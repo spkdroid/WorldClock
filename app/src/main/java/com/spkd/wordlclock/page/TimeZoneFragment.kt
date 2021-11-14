@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -69,7 +68,7 @@ class TimeZoneFragment : Fragment(), TextWatcher, TimeZoneAdapter.ClickListener 
     }
 
     override fun onClick(view: View, position: Int) {
-        val text = view.timeZoneTitle.text.toString() + "/" + view.timeZoneCityName.text.toString()
+        val text = view.timeZoneCityName.text.toString() + "/" + view.timeZoneTitle.text.toString()
         viewModel.addTimeZoneToDatabase(text).observe(this, {
             System.out.println(it.size)
         })

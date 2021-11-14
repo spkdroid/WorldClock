@@ -6,4 +6,8 @@ class TimeZoneUseCase {
 
     }
 
+    fun getTimeZoneFromDataBase() {
+
+    }
+
 }
