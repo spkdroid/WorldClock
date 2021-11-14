@@ -27,6 +27,4 @@ class TimeZoneDataSource @Inject constructor(var timeZoneDao: TimeZoneDao) : ITi
     override fun getById(id: Int): LiveData<List<TimeZone>> {
         return timeZoneDao.findById(id)
     }
-
-
 }
