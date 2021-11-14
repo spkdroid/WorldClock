@@ -2,6 +2,7 @@ package com.spkd.wordlclock.page
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,11 +55,27 @@ class SummaryFragment : Fragment() {
               Navigation.findNavController(it).navigate(R.id.action_summaryFragment_to_timeZoneFragment)
         }
 
+
+        // update the recyclerview every 10 second
+        setHandler()
+    }
+
+    private fun setHandler() {
+        val handler = Handler()
+        val delay = 10000L //1000 milliseconds = 1 sec
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                summaryTimeZoneList.adapter!!.notifyDataSetChanged()
+                handler.postDelayed(this, delay)
+            }
+        }, delay)
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.updateTimeZonesFromDatabase()
+        if(summaryTimeZoneList.adapter!=null) {
+            summaryTimeZoneList.adapter!!.notifyDataSetChanged()
+        }
     }
 
 }
