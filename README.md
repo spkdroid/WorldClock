@@ -29,12 +29,7 @@ Go to the [Releases](https://github.com/spkdroid/WorldClock/releases/) to downlo
   - MVVM Architecture (View - ViewModel - Model)
   - Repository pattern
   - [Dagger2]() - dependency injection.
-
-## Unit Testing Frameworks
-Unit Tests verify the interactions of viewmodels between repositories and dao & REST api requests.
-- [Robolectric](https://github.com/robolectric/robolectric) - Robolectric is the industry-standard unit testing framework for Android.
-- [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin) - a small library that provides helper functions to work with Mockito in Kotlin.
-
+  
 
 <p align="center">
   <img src="https://github.com/spkdroid/WorldClock/blob/master/screenshot1.png" height=500 width=240/>

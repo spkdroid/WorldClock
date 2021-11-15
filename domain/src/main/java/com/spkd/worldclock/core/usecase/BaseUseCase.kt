@@ -5,7 +5,5 @@ import com.spkd.worldclock.data.repository.ITimeZoneRepository
 
 
 open class BaseUseCase {
-
     var timeZoneRepository: ITimeZoneRepository = RepositoryInstance.getInstance()
-
 }
