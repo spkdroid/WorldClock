@@ -1,22 +1,35 @@
 package com.spkd.worldclock.core.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.spkd.worldclock.data.entity.TimeZone
-import io.reactivex.Completable
-
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TimeZoneDao {
-    @Query("SELECT * FROM TimeZone")
-    fun getAll(): LiveData<List<TimeZone>>
+    @Query("SELECT * FROM timezone_table ORDER BY display_name ASC")
+    fun getAllTimeZones(): Flow<List<TimeZone>>
 
-    @Query("SELECT * FROM TimeZone WHERE uid IN (:userIds)")
-    fun findById(userIds: Int): LiveData<List<TimeZone>>
+    @Query("SELECT * FROM timezone_table WHERE is_selected = 1 ORDER BY display_name ASC")
+    fun getSelectedTimeZones(): Flow<List<TimeZone>>
+
+    @Query("SELECT * FROM timezone_table WHERE uid = :uid")
+    suspend fun getTimeZoneById(uid: String): TimeZone?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(timeZone: TimeZone) : Completable
+    suspend fun insertTimeZone(timeZone: TimeZone)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTimeZones(timeZones: List<TimeZone>)
+
+    @Update
+    suspend fun updateTimeZone(timeZone: TimeZone)
 
     @Delete
-    fun delete(timeZone: TimeZone): Completable
+    suspend fun deleteTimeZone(timeZone: TimeZone)
+
+    @Query("DELETE FROM timezone_table")
+    suspend fun deleteAllTimeZones()
+
+    @Query("UPDATE timezone_table SET is_selected = :isSelected WHERE uid = :uid")
+    suspend fun updateTimeZoneSelection(uid: String, isSelected: Boolean)
 }
