@@ -22,6 +22,16 @@ fun TimeZoneListScreen(
     viewModel: WorldClockViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    var searchQuery by remember { mutableStateOf("") }
+
+    val filteredTimeZones = if (searchQuery.isBlank()) {
+        uiState.allTimeZones
+    } else {
+        uiState.allTimeZones.filter {
+            it.displayName.contains(searchQuery, ignoreCase = true) ||
+            it.timeZoneName.contains(searchQuery, ignoreCase = true)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -48,28 +58,39 @@ fun TimeZoneListScreen(
             )
         }
     ) { paddingValues ->
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            if (uiState.isLoading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            } else {
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(uiState.allTimeZones) { timeZone ->
-                        TimeZoneSelectionItem(
-                            timeZone = timeZone,
-                            onSelectionChange = { isSelected ->
-                                viewModel.toggleTimeZoneSelection(timeZone)
-                            }
-                        )
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                label = { Text("Search time zones") },
+                singleLine = true
+            )
+            Box(modifier = Modifier.weight(1f)) {
+                if (uiState.isLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(0.dp, 0.dp, 0.dp, 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(filteredTimeZones) { timeZone ->
+                            TimeZoneSelectionItem(
+                                timeZone = timeZone,
+                                onSelectionChange = { isSelected ->
+                                    viewModel.toggleTimeZoneSelection(timeZone)
+                                }
+                            )
+                        }
                     }
                 }
             }
