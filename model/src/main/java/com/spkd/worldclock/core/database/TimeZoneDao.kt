@@ -32,4 +32,7 @@ interface TimeZoneDao {
 
     @Query("UPDATE timezone_table SET is_selected = :isSelected WHERE uid = :uid")
     suspend fun updateTimeZoneSelection(uid: String, isSelected: Boolean)
+    
+    @Query("SELECT COUNT(*) FROM timezone_table")
+    suspend fun getTimeZoneCount(): Int
 }

@@ -39,21 +39,28 @@ class TimeZoneRepositoryImpl @Inject constructor(
     override suspend fun updateTimeZoneSelection(uid: String, isSelected: Boolean) =
         timeZoneDao.updateTimeZoneSelection(uid, isSelected)
 
+    override suspend fun getTimeZoneCount(): Int =
+        timeZoneDao.getTimeZoneCount()
+
     override suspend fun initializeDefaultTimeZones() {
-        val defaultTimeZones = listOf(
-            TimeZone("america_new_york", "America/New_York", "New York"),
-            TimeZone("america_los_angeles", "America/Los_Angeles", "Los Angeles"),
-            TimeZone("europe_london", "Europe/London", "London"),
-            TimeZone("europe_paris", "Europe/Paris", "Paris"),
-            TimeZone("asia_tokyo", "Asia/Tokyo", "Tokyo"),
-            TimeZone("asia_shanghai", "Asia/Shanghai", "Shanghai"),
-            TimeZone("asia_kolkata", "Asia/Kolkata", "Mumbai"),
-            TimeZone("australia_sydney", "Australia/Sydney", "Sydney"),
-            TimeZone("america_sao_paulo", "America/Sao_Paulo", "São Paulo"),
-            TimeZone("africa_cairo", "Africa/Cairo", "Cairo"),
-            TimeZone("europe_moscow", "Europe/Moscow", "Moscow"),
-            TimeZone("asia_dubai", "Asia/Dubai", "Dubai")
-        )
-        insertTimeZones(defaultTimeZones)
+        // Only initialize if the database is empty
+        val count = getTimeZoneCount()
+        if (count == 0) {
+            val defaultTimeZones = listOf(
+                TimeZone("america_new_york", "America/New_York", "New York"),
+                TimeZone("america_los_angeles", "America/Los_Angeles", "Los Angeles"),
+                TimeZone("europe_london", "Europe/London", "London"),
+                TimeZone("europe_paris", "Europe/Paris", "Paris"),
+                TimeZone("asia_tokyo", "Asia/Tokyo", "Tokyo"),
+                TimeZone("asia_shanghai", "Asia/Shanghai", "Shanghai"),
+                TimeZone("asia_kolkata", "Asia/Kolkata", "Mumbai"),
+                TimeZone("australia_sydney", "Australia/Sydney", "Sydney"),
+                TimeZone("america_sao_paulo", "America/Sao_Paulo", "São Paulo"),
+                TimeZone("africa_cairo", "Africa/Cairo", "Cairo"),
+                TimeZone("europe_moscow", "Europe/Moscow", "Moscow"),
+                TimeZone("asia_dubai", "Asia/Dubai", "Dubai")
+            )
+            insertTimeZones(defaultTimeZones)
+        }
     }
 }

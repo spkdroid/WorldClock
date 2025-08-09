@@ -13,5 +13,6 @@ interface TimeZoneRepository {
     suspend fun deleteTimeZone(timeZone: TimeZone)
     suspend fun deleteAllTimeZones()
     suspend fun updateTimeZoneSelection(uid: String, isSelected: Boolean)
+    suspend fun getTimeZoneCount(): Int
     suspend fun initializeDefaultTimeZones()
 }

@@ -43,46 +43,44 @@ class WorldClockViewModel @Inject constructor(
     val currentTimes: StateFlow<List<CurrentTimeInfo>> = _currentTimes.asStateFlow()
 
     init {
-        initializeData()
-        observeTimeZones()
+        viewModelScope.launch {
+            initializeData()
+            observeTimeZones()
+        }
         startTimeUpdates()
     }
 
-    private fun initializeData() {
-        viewModelScope.launch {
-            try {
-                _uiState.value = _uiState.value.copy(isLoading = true)
-                initializeDefaultTimeZonesUseCase()
-                _uiState.value = _uiState.value.copy(isLoading = false)
-            } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(
-                    isLoading = false,
-                    error = e.message
-                )
-            }
+    private suspend fun initializeData() {
+        try {
+            _uiState.value = _uiState.value.copy(isLoading = true)
+            initializeDefaultTimeZonesUseCase()
+            _uiState.value = _uiState.value.copy(isLoading = false)
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value.copy(
+                isLoading = false,
+                error = e.message
+            )
         }
     }
 
-    private fun observeTimeZones() {
-        viewModelScope.launch {
-            combine(
-                getAllTimeZonesUseCase(),
-                getSelectedTimeZonesUseCase()
-            ) { allTimeZones, selectedTimeZones ->
-                TimeZoneUiState(
-                    allTimeZones = allTimeZones,
-                    selectedTimeZones = selectedTimeZones,
-                    isLoading = false
-                )
-            }.catch { throwable ->
-                _uiState.value = _uiState.value.copy(
-                    isLoading = false,
-                    error = throwable.message
-                )
-            }.collect { state ->
-                _uiState.value = state
-                updateCurrentTimes(state.selectedTimeZones)
-            }
+    private suspend fun observeTimeZones() {
+        combine(
+            getAllTimeZonesUseCase(),
+            getSelectedTimeZonesUseCase()
+        ) { allTimeZones, selectedTimeZones ->
+            TimeZoneUiState(
+                allTimeZones = allTimeZones,
+                selectedTimeZones = selectedTimeZones,
+                isLoading = false
+            )
+        }.catch { throwable ->
+            _uiState.value = _uiState.value.copy(
+                isLoading = false,
+                error = throwable.message
+            )
+        }.collect { state ->
+            _uiState.value = state
+            updateCurrentTimes(state.selectedTimeZones)
         }
     }
 
