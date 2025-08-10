@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2025 SPKD World Clock
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.spkd.wordlclock.widget
 
 import android.content.Context
@@ -11,8 +27,21 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Provides time zone data for the widget.
- * Since widgets cannot use Hilt injection, we manually create the database and repository.
+ * Data provider for World Clock widgets.
+ * 
+ * This class provides time zone data specifically for Android widgets,
+ * handling the unique requirements of widget data access. Since widgets
+ * cannot use Hilt dependency injection, this provider manually creates
+ * the necessary database and repository instances.
+ * 
+ * Key responsibilities:
+ * - Provide time zone data to widget components
+ * - Manage widget-specific state (current city index per widget)
+ * - Handle widget navigation between cities
+ * - Format time data appropriately for widget display
+ * - Persist widget preferences across app restarts
+ * 
+ * @param context Android context for database and preferences access
  */
 class WorldClockWidgetDataProvider(private val context: Context) {
     
