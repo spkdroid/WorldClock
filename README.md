@@ -179,7 +179,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 ## � License
 
 ```
-Copyright (C) 2025 SPKD World Clock
+Copyright (C) 2025 Ramkumar Velmurugan
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
