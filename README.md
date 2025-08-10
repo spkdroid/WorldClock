@@ -39,7 +39,7 @@
   <img src="screenshot/screenshot1.png" alt="Main Screen" height="500" width="240"/>
   <img src="screenshot/screenshot2.png" alt="Time Zone Selection" height="500" width="240"/>
   <img src="screenshot/screenshot3.png" alt="Widget" height="500" width="240"/>
-  <img src="screenshot/screenshot4.png" alt="Widget" height="500" width="240"/> 
+  <img src="screenshot/Screenshot4.png" alt="Widget" height="500" width="240"/> 
 </p>
 
 ## 🏗️ Architecture
