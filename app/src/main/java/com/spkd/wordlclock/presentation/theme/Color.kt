@@ -2,35 +2,41 @@ package com.spkd.wordlclock.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Professional World Clock Color Palette
+// Primary colors - Black and White
+val BlackPrimary = Color(0xFF000000)
+val WhitePrimary = Color(0xFFFFFFFF)
+val DarkGray = Color(0xFF1A1A1A)
+val LightGray = Color(0xFFF5F5F5)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Accent colors - Red and Orange
+val RedAccent = Color(0xFFE53E3E)
+val OrangeAccent = Color(0xFFFF6B35)
+val DarkRed = Color(0xFFCC2E2E)
+val DarkOrange = Color(0xFFE55A2B)
 
-// World Clock Custom Colors
-val WorldClockPrimary = Color(0xFF1976D2)
-val WorldClockPrimaryVariant = Color(0xFF0D47A1)
-val WorldClockSecondary = Color(0xFF03DAC6)
-val WorldClockSecondaryVariant = Color(0xFF018786)
-val WorldClockBackground = Color(0xFFFAFAFA)
-val WorldClockSurface = Color(0xFFFFFFFF)
-val WorldClockError = Color(0xFFB00020)
-val WorldClockOnPrimary = Color(0xFFFFFFFF)
-val WorldClockOnSecondary = Color(0xFF000000)
-val WorldClockOnBackground = Color(0xFF000000)
-val WorldClockOnSurface = Color(0xFF000000)
-val WorldClockOnError = Color(0xFFFFFFFF)
+// Light Theme Colors
+val WorldClockPrimary = BlackPrimary
+val WorldClockPrimaryVariant = DarkGray
+val WorldClockSecondary = RedAccent
+val WorldClockSecondaryVariant = DarkRed
+val WorldClockBackground = WhitePrimary
+val WorldClockSurface = LightGray
+val WorldClockError = RedAccent
+val WorldClockOnPrimary = WhitePrimary
+val WorldClockOnSecondary = WhitePrimary
+val WorldClockOnBackground = BlackPrimary
+val WorldClockOnSurface = BlackPrimary
+val WorldClockOnError = WhitePrimary
+val WorldClockAccent = OrangeAccent
 
-// Dark theme colors
-val WorldClockDarkPrimary = Color(0xFF90CAF9)
-val WorldClockDarkPrimaryVariant = Color(0xFF1976D2)
-val WorldClockDarkSecondary = Color(0xFF03DAC6)
-val WorldClockDarkBackground = Color(0xFF121212)
-val WorldClockDarkSurface = Color(0xFF1E1E1E)
-val WorldClockDarkOnPrimary = Color(0xFF000000)
-val WorldClockDarkOnSecondary = Color(0xFF000000)
-val WorldClockDarkOnBackground = Color(0xFFFFFFFF)
-val WorldClockDarkOnSurface = Color(0xFFFFFFFF)
+// Dark Theme Colors
+val WorldClockDarkPrimary = WhitePrimary
+val WorldClockDarkPrimaryVariant = LightGray
+val WorldClockDarkSecondary = OrangeAccent
+val WorldClockDarkBackground = DarkGray
+val WorldClockDarkSurface = Color(0xFF2A2A2A)
+val WorldClockDarkOnPrimary = BlackPrimary
+val WorldClockDarkOnSecondary = BlackPrimary
+val WorldClockDarkOnBackground = WhitePrimary
+val WorldClockDarkOnSurface = WhitePrimary

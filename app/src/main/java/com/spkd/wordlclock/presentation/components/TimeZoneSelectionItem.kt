@@ -22,7 +22,7 @@ fun TimeZoneSelectionItem(
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = if (timeZone.isSelected) {
-                MaterialTheme.colorScheme.primaryContainer
+                MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
             } else {
                 MaterialTheme.colorScheme.surface
             }
@@ -47,7 +47,7 @@ fun TimeZoneSelectionItem(
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Medium,
                     color = if (timeZone.isSelected) {
-                        MaterialTheme.colorScheme.onPrimaryContainer
+                        MaterialTheme.colorScheme.primary
                     } else {
                         MaterialTheme.colorScheme.onSurface
                     }
@@ -57,7 +57,7 @@ fun TimeZoneSelectionItem(
                     text = timeZone.timeZoneName,
                     style = MaterialTheme.typography.bodySmall,
                     color = if (timeZone.isSelected) {
-                        MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
                     } else {
                         MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     }

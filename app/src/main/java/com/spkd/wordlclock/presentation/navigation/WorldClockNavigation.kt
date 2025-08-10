@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.spkd.wordlclock.presentation.screen.SplashScreen
 import com.spkd.wordlclock.presentation.screen.TimeZoneListScreen
 import com.spkd.wordlclock.presentation.screen.WorldClockScreen
 
@@ -13,8 +14,17 @@ fun WorldClockNavigation() {
     
     NavHost(
         navController = navController,
-        startDestination = "world_clock"
+        startDestination = "splash"
     ) {
+        composable("splash") {
+            SplashScreen(
+                onNavigateToMain = {
+                    navController.navigate("world_clock") {
+                        popUpTo("splash") { inclusive = true }
+                    }
+                }
+            )
+        }
         composable("world_clock") {
             WorldClockScreen(
                 onNavigateToTimeZoneList = {
